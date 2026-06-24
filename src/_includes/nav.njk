@@ -1,0 +1,32 @@
+{#- THE nav — single-page nav with #anchor links. Logo text = site.name. -#}
+<nav class="fixed top-0 inset-x-0 z-50 bg-warm/85 backdrop-blur-md border-b border-ink/5">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10 h-16">
+    <a href="#top" class="serif text-xl tracking-tightish text-ink">
+      {{ site.name }}
+    </a>
+    <div class="hidden md:flex items-center gap-9 text-[13px] text-mute">
+      <a href="#trenere"    class="hover:text-ink transition-colors">Trenere</a>
+      <a href="#atsauksmes" class="hover:text-ink transition-colors">Atsauksmes</a>
+      <a href="#davanu"     class="hover:text-ink transition-colors">Dāvanu kartes</a>
+      <a href="#podkasts"class="hover:text-ink transition-colors">Podkāsts</a>
+      <a href="#kontakti"   class="hover:text-ink transition-colors">Kontakti</a>
+    </div>
+    <a href="#programmas" class="pill-link hidden md:inline-flex items-center gap-2 bg-ink text-warm text-[12.5px] font-medium px-5 py-2.5 rounded-full hover:bg-sageDk">
+      Sākt treniņus
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button id="menu-btn" class="md:hidden text-ink p-2" aria-label="Izvēlne">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div id="menu" class="md:hidden hidden border-t border-ink/5 bg-warm">
+    <div class="px-6 py-4 flex flex-col gap-3 text-sm text-mute">
+      <a href="#trenere"    class="hover:text-ink">Trenere</a>
+      <a href="#atsauksmes" class="hover:text-ink">Atsauksmes</a>
+      <a href="#davanu"     class="hover:text-ink">Dāvanu kartes</a>
+      <a href="#podkasts"class="hover:text-ink">Podkāsts</a>
+      <a href="#kontakti"   class="hover:text-ink">Kontakti</a>
+      <a href="#programmas" class="mt-2 bg-ink text-warm text-center px-5 py-3 rounded-full">Sākt treniņus</a>
+    </div>
+  </div>
+</nav>

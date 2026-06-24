@@ -1,0 +1,35 @@
+{#- THE footer — defined once. Contact literals come from src/_data/site.json. -#}
+<footer class="bg-cream border-t border-ink/10 pt-16 pb-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <a href="#top" class="serif text-2xl tracking-tightish">{{ site.name }}</a>
+        <p class="text-mute text-[15px] mt-4 max-w-sm leading-relaxed">
+          Online treniņu programmas stipram, lokanam ķermenim un mierpilnam prātam — sev ērtā laikā un vietā.
+        </p>
+      </div>
+      <div class="md:col-span-3">
+        <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-4">Programmas</p>
+        <ul class="space-y-2 text-[15px]">
+          <li><a href="#programmas" class="hover:text-sageDk transition-colors">Vingrošana</a></li>
+          <li><a href="#programmas" class="hover:text-sageDk transition-colors">Ballet Fitness</a></li>
+          <li><a href="#programmas" class="hover:text-sageDk transition-colors">Stiepšanās un relaksācija</a></li>
+          <li><a href="#programmas" class="hover:text-sageDk transition-colors">Bali · Drīzumā</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-4">Sazinies</p>
+        <ul class="space-y-2 text-[15px]">
+          <li><a href="mailto:{{ site.email }}" class="hover:text-sageDk transition-colors">{{ site.email }}</a></li>
+          <li><a href="tel:{{ site.phoneHref }}" class="hover:text-sageDk transition-colors">{{ site.phone }}</a></li>
+          <li><a href="#davanu" class="hover:text-sageDk transition-colors">Dāvanu kartes</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-ink/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-mute">
+      <p>© {{ site.year }} {{ site.fullName }}. Visas tiesības aizsargātas.</p>
+      <p>Veidots ar mīlestību kustībai.</p>
+    </div>
+  </div>
+</footer>

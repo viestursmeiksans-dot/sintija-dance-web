@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="lv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sintija Dance Fitness — Online treniņi stipram un lokanam ķermenim</title>
+<meta name="description" content="Sintijas Dances online treniņu programmas — vingrošana, ballet fitness, stiepšanās un relaksācija. Treniņi mājās, brīvi plānojami sev ērtā laikā." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans:   ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          serif:  ['Georgia', 'ui-serif', 'serif'],
+        },
+        colors: {
+          cream:   '#F6F1E8',
+          sand:    '#EDE3D2',
+          warm:    '#FBF7F0',
+          ink:     '#1E1B17',
+          mute:    '#6F6757',
+          sage:    '#7C8A6B',
+          sageDk:  '#5E6C50',
+          rose:    '#C8907E',
+        },
+        letterSpacing: { tightish: '-0.02em' }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; background:#FBF7F0; color:#1E1B17; }
+  .serif { font-family: Georgia, 'Times New Roman', serif; }
+  .ital  { font-style: italic; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: .06;
+    background-image: radial-gradient(rgba(0,0,0,.6) 1px, transparent 1px);
+    background-size: 3px 3px; mix-blend-mode: multiply;
+  }
+  .marquee { animation: marquee 17.5s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.is-in { opacity: 1; transform: none; }
+  details[open] summary .plus { transform: rotate(45deg); }
+  summary::-webkit-details-marker { display:none; }
+  .hover-lift { transition: transform .35s ease, box-shadow .35s ease; }
+  .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 22px 50px -28px rgba(30,27,23,.35); }
+  .prog-card { cursor: pointer; outline: none;
+    transition: background-color .3s ease, border-color .3s ease, transform .35s ease, box-shadow .35s ease; }
+  .prog-card:hover, .prog-card:active, .prog-card.selected { background-color: #5E6C50; border-color: #5E6C50; }
+  .prog-card:hover *, .prog-card:active *, .prog-card.selected * { color: #FBF7F0; }
+  .prog-card:hover .prog-pill, .prog-card:active .prog-pill, .prog-card.selected .prog-pill { border-color: rgba(251,247,240,.45); }
+  .prog-card.selected { box-shadow: 0 0 0 2px #5E6C50, 0 22px 50px -28px rgba(30,27,23,.45); }
+  .kl-card.kl-selected { box-shadow: 0 0 0 2px #5E6C50; border-color: #5E6C50; }
+  .pill-link { transition: background-color .2s ease, color .2s ease, transform .15s ease; }
+  .pill-link:active { transform: scale(.97); }
+  img.fallback { background: #EDE3D2; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+</style>
+</head>
+
+<body class="bg-warm text-ink font-sans">
+
+<!-- NAV -->
+{% include "nav.njk" %}
+
+<!-- HERO -->
+<section id="top" class="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden">
+  <div class="grain"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+    <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-7 reveal">Treniņu programmas · 2026</p>
+
+    <div class="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+
+      <!-- IMAGE — first on mobile (right after eyebrow), right column on desktop -->
+      <div class="md:col-span-5 order-1 md:order-2 reveal">
+        <div class="relative">
+          <img src="images/Hero.jpg" fetchpriority="high"
+               onerror="this.onerror=null;this.src='https://placehold.co/900x1100/EDE3D2/8c8267?text=Hero';"
+               alt="Sintija Dance — trenere" class="w-full aspect-[4/5] object-cover rounded-[2rem] shadow-[0_30px_60px_-20px_rgba(30,27,23,.25)]" />
+          <div class="absolute -top-5 -right-3 md:-right-6 bg-sage text-warm rounded-full w-24 h-24 flex items-center justify-center serif text-sm leading-tight text-center rotate-[8deg]">
+            Sāc<br/>jau<br/>šodien
+          </div>
+        </div>
+      </div>
+
+      <!-- TEXT -->
+      <div class="md:col-span-7 order-2 md:order-1 reveal">
+        <h1 class="serif text-5xl md:text-7xl leading-[1.02] tracking-tightish text-ink">
+          Stiprs un lokans
+          <span class="ital text-sageDk block">ķermenis,</span>
+          mierīgs prāts.
+        </h1>
+        <p class="mt-7 text-[17px] text-mute max-w-xl leading-relaxed">
+          Sintijas Dances online treniņu programmas palīdzēs tev padarīt savu ķermeni stiprāku,
+          kustības plašākas un pašsajūtu labāku. Visās programmās domāts par muguras veselību,
+          mobilitāti un stabilitāti locītavās — un par labsajūtu vingrojot.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#klatiene" class="pill-link inline-flex items-center gap-2 bg-ink text-warm font-medium px-7 py-3.5 rounded-full hover:bg-sageDk">
+            Treniņi klātienē grupās
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#programmas" class="pill-link inline-flex items-center gap-2 bg-ink text-warm font-medium px-7 py-3.5 rounded-full hover:bg-sageDk">
+            Treniņi online
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="tel:+37120034240" class="pill-link inline-flex items-center gap-2 border border-ink/15 text-ink font-medium px-7 py-3.5 rounded-full hover:bg-ink hover:text-warm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72a2 2 0 0 1 1.73 2.01z"/></svg>
+            +371 200 342 40
+          </a>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 gap-6 max-w-sm">
+          <div>
+            <p class="serif text-3xl text-ink">12</p>
+            <p class="text-[12px] text-mute mt-1">gadu pieredze grupu un online treniņos</p>
+          </div>
+          <div>
+            <p class="serif text-3xl text-ink">3</p>
+            <p class="text-[12px] text-mute mt-1">treniņu programmas — sev ērtā laikā</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="bg-cream border-y border-ink/5 py-5 overflow-hidden">
+  <div class="flex gap-12 whitespace-nowrap marquee serif text-2xl md:text-3xl text-ink/80">
+    <span>Vingrošana</span><span class="text-rose">·</span>
+    <span>Ballet Fitness</span><span class="text-rose">·</span>
+    <span>Stiepšanās</span><span class="text-rose">·</span>
+    <span>Klātienes treniņi</span><span class="text-rose">·</span>
+    <span>Muguras veselība</span><span class="text-rose">·</span>
+    <span>Online treniņi</span><span class="text-rose">·</span>
+    <span>Vingrošana</span><span class="text-rose">·</span>
+    <span>Ballet Fitness</span><span class="text-rose">·</span>
+    <span>Stiepšanās</span><span class="text-rose">·</span>
+    <span>Klātienes treniņi</span><span class="text-rose">·</span>
+    <span>Muguras veselība</span><span class="text-rose">·</span>
+    <span>Online treniņi</span><span class="text-rose">·</span>
+  </div>
+</section>
+
+<!-- KLĀTIENES TRENIŅI -->
+<section id="klatiene" class="py-20 md:py-28 bg-sand">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12 reveal">
+      <div class="max-w-2xl">
+        <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-4">Klātienes treniņi</p>
+        <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+          Treniņi klātienē <span class="ital text-sageDk">grupās</span>
+        </h2>
+        <p class="mt-5 text-mute leading-relaxed">
+          Pievienojies nodarbībām klātienē — raksti vai zvani, lai uzzinātu par norises laikiem un vietām.
+        </p>
+      </div>
+      <a href="tel:+37120034240" class="pill-link inline-flex items-center gap-2 bg-ink text-warm font-medium px-6 py-3 rounded-full hover:bg-sageDk">
+        Sazinies par pieteikšanos →
+      </a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'muguras')">
+        <span class="serif text-2xl text-rose shrink-0">01</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Vingrošana muguras veselībai</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'stiepsanas')">
+        <span class="serif text-2xl text-rose shrink-0">02</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Stiepšanās un relaksācija</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'balets')">
+        <span class="serif text-2xl text-rose shrink-0">03</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Balets pieaugušajiem</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'rita')">
+        <span class="serif text-2xl text-rose shrink-0">04</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Rīta vingrošana</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'seniori')">
+        <span class="serif text-2xl text-rose shrink-0">05</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Vingrošana senioriem</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€6</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="openKlatiene(this,'speks')">
+        <span class="serif text-2xl text-rose shrink-0">06</span>
+        <h3 class="serif text-lg md:text-xl leading-tight">Vingrošana spēkam un izturībai</h3>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+    </div>
+
+    <!-- KLĀTIENE INFO (filled by JS) -->
+    <div id="klatiene-info" class="hidden mt-8 scroll-mt-24">
+      <div class="bg-warm border border-ink/10 rounded-[1.75rem] p-8 md:p-12 max-w-3xl mx-auto shadow-[0_24px_60px_-32px_rgba(30,27,23,.35)]">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-2">Klātienes nodarbība</p>
+            <h3 id="klatiene-title" class="serif text-2xl md:text-3xl leading-tight text-sageDk">—</h3>
+            <p class="mt-2"><span class="serif text-xl text-ink" id="klatiene-price">€8</span> <span class="text-mute text-sm">/ nodarbība</span></p>
+          </div>
+          <button type="button" onclick="closeKlatiene()" aria-label="Aizvērt"
+                  class="shrink-0 w-9 h-9 rounded-full border border-ink/15 text-mute hover:bg-ink hover:text-warm transition-colors flex items-center justify-center text-xl leading-none">×</button>
+        </div>
+
+        <div id="klatiene-desc" class="mt-6"></div>
+
+        <div class="mt-8 border-t border-ink/10 pt-7">
+          <p class="text-ink/80 leading-relaxed mb-5">
+            Lai pieteiktos uz šīm nodarbībām, lūdzu, sazinieties ar mani WhatsApp:
+          </p>
+          <a href="https://wa.me/37120034240?text=Sveiki%2C%20Sintija%21%20V%C4%93los%20pieteikties%20kl%C4%81tienes%20nodarb%C4%ABb%C4%81m." target="_blank" rel="noopener"
+             class="pill-link inline-flex items-center gap-2 bg-sageDk text-warm font-medium px-7 py-3.5 rounded-full hover:bg-ink">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.51.1-.2.05-.38-.02-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.49 9.49 0 0 1-1.45-5.06c0-5.25 4.27-9.52 9.52-9.52 2.54 0 4.93.99 6.73 2.79a9.46 9.46 0 0 1 2.79 6.74c0 5.25-4.27 9.5-9.51 9.5zm5.55-7.12z"/></svg>
+            +371 200 342 40
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1:1 -->
+    <div class="mt-16 md:mt-20 reveal">
+      <h3 class="serif text-3xl md:text-4xl tracking-tightish">1:1 treniņi <span class="ital text-sageDk">klātienē</span></h3>
+    </div>
+
+    <div class="mt-8 max-w-2xl">
+      <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
+           role="button" tabindex="0" onclick="toggleSolo(this)">
+        <svg class="text-rose shrink-0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <div class="min-w-0">
+          <h3 class="serif text-xl md:text-2xl leading-tight">Individuālie treniņi</h3>
+          <p class="text-sm text-mute mt-0.5">Personīga pieeja un izvērtēšana</p>
+        </div>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€20</span>
+        <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+
+      <div id="klatiene-solo" class="hidden mt-6 scroll-mt-24">
+        <div class="bg-warm border border-ink/10 rounded-[1.75rem] p-8 md:p-12 shadow-[0_24px_60px_-32px_rgba(30,27,23,.35)]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-2">1:1 treniņi klātienē</p>
+              <h3 class="serif text-2xl md:text-3xl leading-tight text-sageDk">Individuālie treniņi</h3>
+              <p class="mt-2"><span class="serif text-xl text-ink">€20</span> <span class="text-mute text-sm">/ treniņš</span></p>
+            </div>
+            <button type="button" onclick="closeSolo()" aria-label="Aizvērt"
+                    class="shrink-0 w-9 h-9 rounded-full border border-ink/15 text-mute hover:bg-ink hover:text-warm transition-colors flex items-center justify-center text-xl leading-none">×</button>
+          </div>
+
+          <div class="mt-6">
+            <p class="text-ink/80 leading-relaxed">
+              Jāsaka godīgi — man brīžiem ir sajūta, ka uz pasaules gandrīz nav tādu veselu cilvēku, kuriem nekas nesāp un nav nekādu problēmu. Pie manis patiešām biežāk nāk vingrotāji ar jau gatavu sarakstiņu — kaitēm, traumām, diskomfortu un sāpēm ķermenī. Protams, ir daži laimīgie, kas atnāk un saka, ka ir pilnīgi veseli, bet tādu ir pavisam maz — 90% gadījumu tomēr atklājas, ka viss kaut kas jau ir, tikai cilvēks nezināja, ka tas ir svarīgi.
+            </p>
+            <p class="mt-4 text-ink/80 leading-relaxed">
+              <strong class="text-ink font-semibold">Tāpēc</strong>, lai labāk saprastu, ar ko man jāstrādā, un lai process būtu jēgpilnāks, nevis tikai gatavu programmu apstrāde, mēs sākumā tiekamies divatā pie manis klusajā telpā Zāļu ielā:
+            </p>
+            <ul class="mt-5 space-y-3">
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Tur mēs <strong class="text-ink font-medium">izrunājam</strong> visas detaļas. Ja klients ir gatavs dalīties, apskatu izmeklējumus un pēdējos speciālistu slēdzienus.</span></li>
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Novērtēju stāju un skaidroju, kādas nianses jau tagad var ieviest ikdienā.</span></li>
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Novērtēju muskuļu garumu, kustību amplitūdu un vai ir kādi ierobežojumi kustībās.</span></li>
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Novērtēju muskuļu spēku — vai abas ekstremitātes ir līdzvērtīgas un vai atsevišķās kustībās pieslēdzam atbilstošos muskuļus.</span></li>
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Pievēršamies dziļajai muskulatūrai — vai apzināti to var aktivizēt un vai pie bāzes vingrinājumiem tā pieslēdzas. Ja nē, mācāmies to darīt.</span></li>
+              <li class="flex gap-3"><span class="text-sageDk mt-0.5 shrink-0">✓</span><span class="text-ink/80 leading-relaxed">Tālāk strādājam pie vājo vietu stiprināšanas, un tikai tad, kad esam gatavi lielākai slodzei, dodamies uz sporta zāli AshLifeGym un ķeramies pie dzelžiem. Tas nenozīmē, ka uzreiz strādāsim ar lieliem svariem — visu darām pakāpeniski!</span></li>
+            </ul>
+          </div>
+
+          <div class="mt-8 border-t border-ink/10 pt-7">
+            <p class="text-ink/80 leading-relaxed mb-5">
+              Lai pieteiktos, lūdzu, sazinieties ar mani WhatsApp:
+            </p>
+            <a href="https://wa.me/37120034240?text=Sveiki%2C%20Sintija%21%20V%C4%93los%20pieteikties%201%3A1%20treni%C5%86iem%20kl%C4%81tien%C4%93." target="_blank" rel="noopener"
+               class="pill-link inline-flex items-center gap-2 bg-sageDk text-warm font-medium px-7 py-3.5 rounded-full hover:bg-ink">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.51.1-.2.05-.38-.02-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.49 9.49 0 0 1-1.45-5.06c0-5.25 4.27-9.52 9.52-9.52 2.54 0 4.93.99 6.73 2.79a9.46 9.46 0 0 1 2.79 6.74c0 5.25-4.27 9.5-9.51 9.5z"/></svg>
+              +371 200 342 40
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programmas" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12 md:mb-16 reveal">
+      <div>
+        <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-4">Online programmas</p>
+        <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish max-w-xl">
+          Izvēlies savu <span class="ital text-sageDk">ceļu</span> uz stipru, lokanu ķermeni.
+        </h2>
+      </div>
+      <p class="text-mute max-w-md">
+        Visās programmās tiek domāts par muguras veselību, mobilitāti un stabilitāti locītavās,
+        kā arī labsajūtu vingrojot. <strong class="text-ink font-semibold">Nospied uz programmas, lai pieteiktos.</strong>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- 1 -->
+      <article class="prog-card reveal rounded-[1.5rem] overflow-hidden border border-ink/8 bg-cream"
+               role="button" tabindex="0" aria-label="Uzzini vairāk: Vingrošana stipram un lokanam ķermenim"
+               onclick="openCourse(this, 'vingrosana')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="images/program-vingrosana.jpg" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/700x880/EDE3D2/8c8267?text=Vingro%C5%A1ana';"
+               alt="Vingrošana stipram un lokanam ķermenim"
+               class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+        </div>
+        <div class="p-6">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">36 treniņu programma</p>
+          <h3 class="serif text-2xl leading-tight">Vingrošana stipram un lokanam ķermenim</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">
+            Apvieno vingrošanas un stiepšanās treniņus — dziļā muskulatūra, visas lielās muskuļu grupas, lokanība.
+          </p>
+          <div class="mt-5 flex items-center justify-between">
+            <p class="serif text-xl">€66</p>
+            <span class="prog-pill text-[12.5px] inline-flex items-center gap-1.5 border border-ink/15 px-4 py-2 rounded-full">
+              Uzzini vairāk →
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="prog-card reveal rounded-[1.5rem] overflow-hidden border border-ink/8 bg-cream"
+               role="button" tabindex="0" aria-label="Uzzini vairāk: Ballet Fitness"
+               onclick="openCourse(this, 'ballet')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="images/program-ballet.jpg" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/700x880/EDE3D2/8c8267?text=Ballet+Fitness';"
+               alt="Ballet Fitness"
+               class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+        </div>
+        <div class="p-6">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">1 mēneša programma · 8 treniņi</p>
+          <h3 class="serif text-2xl leading-tight">Ballet Fitness</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">
+            Klasiskā baleta elementi ar spēka un lokanības vingrinājumiem — stāja, kāju un sēžas spēks, graciozas kustības.
+          </p>
+          <div class="mt-5 flex items-center justify-between">
+            <p class="serif text-xl">€20</p>
+            <span class="prog-pill text-[12.5px] inline-flex items-center gap-1.5 border border-ink/15 px-4 py-2 rounded-full">
+              Uzzini vairāk →
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="prog-card reveal rounded-[1.5rem] overflow-hidden border border-ink/8 bg-cream"
+               role="button" tabindex="0" aria-label="Uzzini vairāk: Stiepšanās un relaksācija"
+               onclick="openCourse(this, 'stiepsanas')">
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="images/program-stiepsanas.jpg" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/700x880/EDE3D2/8c8267?text=Stiep%C5%A1an%C4%81s';"
+               alt="Stiepšanās un relaksācija"
+               class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+        </div>
+        <div class="p-6">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">1 mēnesis · 12 treniņi</p>
+          <h3 class="serif text-2xl leading-tight">Stiepšanās un relaksācija</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">
+            Stiepšanās treniņi, kas relaksē ķermeni un nomierina prātu. Iekļauti spēka vingrinājumi locītavu stabilitātei.
+          </p>
+          <div class="mt-5 flex items-center justify-between">
+            <p class="serif text-xl">€15</p>
+            <span class="prog-pill text-[12.5px] inline-flex items-center gap-1.5 border border-ink/15 px-4 py-2 rounded-full">
+              Uzzini vairāk →
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 — coming soon -->
+      <article class="prog-card reveal rounded-[1.5rem] overflow-hidden border border-ink/8 bg-cream relative"
+               role="button" tabindex="0" aria-label="Uzzini vairāk: Vingrošana muguras veselībai Bali"
+               onclick="openCourse(this, 'bali')">
+        <span class="absolute top-4 left-4 z-10 bg-sage text-warm text-[10.5px] uppercase tracking-[0.18em] font-medium px-3 py-1 rounded-full">Drīzumā</span>
+        <div class="aspect-[4/5] overflow-hidden">
+          <img src="images/Bali.jpg" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/700x880/D9D2BE/6a6553?text=Bali';"
+               alt="Vingrošana muguras veselībai BALI"
+               class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+        </div>
+        <div class="p-6">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Speciāla programma</p>
+          <h3 class="serif text-2xl leading-tight">Vingrošana muguras veselībai · Bali</h3>
+          <p class="text-sm text-mute mt-3 leading-relaxed">
+            Vingrošanas programma, kas tapusi Bali (Indonēzijā). Drīzumā būs pieejama.
+          </p>
+          <div class="mt-5 flex items-center justify-between">
+            <p class="serif text-xl text-mute">—</p>
+            <span class="prog-pill text-[12.5px] inline-flex items-center gap-1.5 border border-ink/15 px-4 py-2 rounded-full">
+              Uzzini vairāk →
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ENQUIRY / REGISTRATION -->
+    <div id="enquiry" class="hidden mt-8 scroll-mt-24">
+      <div class="bg-sand border border-ink/10 rounded-[1.75rem] p-8 md:p-12 max-w-3xl mx-auto shadow-[0_24px_60px_-32px_rgba(30,27,23,.35)]">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-2">Par programmu</p>
+            <h3 class="serif text-2xl md:text-3xl leading-tight text-sageDk"><span id="enquiry-course">—</span></h3>
+          </div>
+          <button type="button" onclick="closeEnquiry()" aria-label="Aizvērt"
+                  class="shrink-0 w-9 h-9 rounded-full border border-ink/15 text-mute hover:bg-ink hover:text-warm transition-colors flex items-center justify-center text-xl leading-none">×</button>
+        </div>
+
+        <!-- COURSE INFO (filled by JS) -->
+        <div id="course-info" class="mt-7"></div>
+
+        <div class="my-9 border-t border-ink/10"></div>
+
+        <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-1">Pieteikšanās</p>
+        <h4 class="serif text-xl md:text-2xl text-ink mb-6">Piesakies kursam</h4>
+
+        <form class="grid sm:grid-cols-2 gap-4" onsubmit="event.preventDefault(); submitEnquiry(this);">
+          <input type="hidden" name="programma" id="enquiry-course-input" />
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+          <div>
+            <label class="block text-[11px] uppercase tracking-[0.2em] text-mute mb-1.5" for="f-firstname">Vārds</label>
+            <input id="f-firstname" name="vards" type="text" required placeholder="Tavs vārds"
+                   class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:outline-none focus:ring-2 focus:ring-sageDk transition" />
+          </div>
+          <div>
+            <label class="block text-[11px] uppercase tracking-[0.2em] text-mute mb-1.5" for="f-lastname">Uzvārds</label>
+            <input id="f-lastname" name="uzvards" type="text" required placeholder="Tavs uzvārds"
+                   class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:outline-none focus:ring-2 focus:ring-sageDk transition" />
+          </div>
+          <div>
+            <label class="block text-[11px] uppercase tracking-[0.2em] text-mute mb-1.5" for="f-phone">Tālrunis</label>
+            <input id="f-phone" name="talrunis" type="tel" required placeholder="+371 ..."
+                   class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:outline-none focus:ring-2 focus:ring-sageDk transition" />
+          </div>
+          <div>
+            <label class="block text-[11px] uppercase tracking-[0.2em] text-mute mb-1.5" for="f-email">E-pasts</label>
+            <input id="f-email" name="epasts" type="email" required placeholder="tavs@epasts.lv"
+                   class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:outline-none focus:ring-2 focus:ring-sageDk transition" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] uppercase tracking-[0.2em] text-mute mb-1.5" for="f-personcode">
+              Personas kods <span class="normal-case tracking-normal text-mute/60">(ja jūs vēlaties savā rēķinā personas kodu, tad, lūdzu, to ierakstiet šeit)</span>
+            </label>
+            <input id="f-personcode" name="personas_kods" type="text" placeholder="000000-00000"
+                   class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-mute/50 focus:outline-none focus:ring-2 focus:ring-sageDk transition" />
+          </div>
+          <p class="sm:col-span-2 text-sm text-mute leading-relaxed bg-warm border border-ink/10 rounded-xl p-4">
+            Mēs Jums atsūtīsim rēķinu, kuru lūgums apmaksāt 3 dienu laikā. Pēc tam mēs nosūtīsim piekļuvi kursam uz Jūsu norādīto e-pasta adresi.
+          </p>
+          <button type="submit" class="pill-link sm:col-span-2 bg-sageDk text-warm font-medium py-3.5 rounded-xl hover:bg-ink">
+            Pieteikties kursam
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRENERE -->
+<section id="trenere" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+    <div class="md:col-span-5 reveal">
+      <div class="relative">
+        <img src="images/trenere.jpg" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/800x1000/EDE3D2/8c8267?text=Sintija+Dance';"
+             alt="Sintija Dance — trenere"
+             class="w-full aspect-[4/5] object-cover rounded-[2rem]" />
+      </div>
+    </div>
+
+    <div class="md:col-span-7 reveal">
+      <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-5">Trenere</p>
+      <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+        Sintija Dance
+      </h2>
+      <p class="mt-6 text-mute leading-relaxed max-w-2xl">
+        Esmu pedagoģijas un sporta studiju absolvente, studējusi fizioterapiju Rīgas Stradiņa universitātē.
+        Man ir pieredze grupu un individuālo treniņu, deju un meditāciju vadīšanā.
+        Apvienojot pieredzi pedagoģijā, dejās, sportā un fizioterapijā, piedāvāju klātienes un online treniņus,
+        kuri palīdzēs stiprināt dziļo muskulatūru, attīstīt visas lielās muskuļu grupas, uzlabos lokanību un
+        palīdzēs labāk sajust savu ķermeni.
+      </p>
+
+      <div class="mt-8 grid sm:grid-cols-3 gap-5">
+        <div class="border-t border-ink/10 pt-4">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-mute">01</p>
+          <p class="serif text-lg mt-1">Trenere</p>
+          <p class="text-sm text-mute mt-1">12 gadu pieredze grupu, individuālajos un online treniņos.</p>
+        </div>
+        <div class="border-t border-ink/10 pt-4">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-mute">02</p>
+          <p class="serif text-lg mt-1">Deju skolotāja</p>
+          <p class="text-sm text-mute mt-1">Latviešu deja un klasiskais balets — bērniem un pieaugušajiem.</p>
+        </div>
+        <div class="border-t border-ink/10 pt-4">
+          <p class="text-[11px] uppercase tracking-[0.18em] text-mute">03</p>
+          <p class="serif text-lg mt-1">Garīgās pasaules izzinātāja</p>
+          <p class="text-sm text-mute mt-1">Podkāsts „Astrālās sarunas ar Shanti".</p>
+        </div>
+      </div>
+
+      <a href="#kontakti" class="pill-link mt-10 inline-flex items-center gap-2 border border-ink/15 text-ink font-medium px-6 py-3 rounded-full hover:bg-ink hover:text-warm">
+        Sazinies ar Sintiju →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section id="podkasts" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-12 md:mb-14 reveal">
+      <div class="max-w-2xl">
+        <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-4">Podkāsts</p>
+        <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+          Astrālās sarunas ar <span class="ital text-sageDk">Shanti</span>
+        </h2>
+        <p class="mt-5 text-mute leading-relaxed">
+          Sarunas par garīgo pasauli, ceļojumiem un pašizziņu. Klausies katru epizodi
+          YouTube vai Spotify platformā.
+        </p>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <button type="button" onclick="scrollPodcast(-1)" aria-label="Iepriekšējā" class="pill-link w-12 h-12 rounded-full border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-warm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" onclick="scrollPodcast(1)" aria-label="Nākamā" class="pill-link w-12 h-12 rounded-full border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-warm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="podcast-track" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-1 px-1">
+
+      <!-- EP 1 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/ZQ7fEiaWYag?si=DlDuis81ov367bTa" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/ZQ7fEiaWYag/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 01</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Kā attīstīt gaišredzību?</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/ZQ7fEiaWYag?si=DlDuis81ov367bTa" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/4KXnzzjs9HqEHsm0RflKoE?si=4c0dbf5d32804a27" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 2 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://www.youtube.com/watch?v=9jU6KWyPNYk&t=861s" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/9jU6KWyPNYk/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 02</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">100 retrīti un 20 reizes Indijā</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.youtube.com/watch?v=9jU6KWyPNYk&t=861s" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/2440zI3H5xNAiQ3iZmE8K9?si=9ada407990244217" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 3 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/IJaNW_-Ko5Q?si=ON1s1nkocPn_bU0a" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/IJaNW_-Ko5Q/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 03</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Un tad mēs nolaidāmies pie Pakistānas robežas</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/IJaNW_-Ko5Q?si=ON1s1nkocPn_bU0a" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/28IrqmVt7E0xI6fc4SSITV?si=904589316dd24b97" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 4 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://www.youtube.com/watch?v=jpOqjtZi09o&t=120s" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/jpOqjtZi09o/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 04</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Mūks, kas pārdeva savu BMW</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://www.youtube.com/watch?v=jpOqjtZi09o&t=120s" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/0uhoUfLvW0RMi9gbQTASLs?si=bd4384e55916453d" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 5 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/go7r0QL6UZ8?si=Pf27lS3otP9cwLCF" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/go7r0QL6UZ8/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 05</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Saruna ar latviešu burvi Meža Robertu</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/go7r0QL6UZ8?si=Pf27lS3otP9cwLCF" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/1zyXUBx2prj0zoQ2j3YWO8?si=558ce240426549ac" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 6 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/AIWaY4cyldM?si=4OapZwhoD-UjDSoQ" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/AIWaY4cyldM/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 06</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Spēka vietas, astroloģija un dabas enerģija</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/AIWaY4cyldM?si=4OapZwhoD-UjDSoQ" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/13i4Lt4Om51KugOIsIoNJh?si=8d34ad4c225049e3" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 7 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/hBsglXbcgT4?si=8kGiw4Zs8GlUzd3e" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/hBsglXbcgT4/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 07</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Sakrālās seksuālās enerģijas vadīšana</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/hBsglXbcgT4?si=8kGiw4Zs8GlUzd3e" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/43iWCpkqw8vIITkSwouH4p?si=696b767ddf2841e9" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 8 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/lmfuIw6jx_s?si=L7Mk8le2RPSGhBTo" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/lmfuIw6jx_s/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 08</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Tantra, Mantra un Jantra</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/lmfuIw6jx_s?si=L7Mk8le2RPSGhBTo" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/7znt04Rt4xzjwI9hFUyefC?si=66890e68b5b44d5b" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 9 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/ew2FM9DEw2A?si=zNxez6f8jbexkdSt" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/ew2FM9DEw2A/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 09</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">Pavasara saulgriežu tradīcijas un to jēga</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/ew2FM9DEw2A?si=zNxez6f8jbexkdSt" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+            <a href="https://open.spotify.com/episode/2F4oyW20PKLHTKgXVYgkVD?si=ac01fa279e394dde" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 border border-ink/15 text-ink text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk hover:text-warm hover:border-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.62.62 0 01-.86.21c-2.35-1.44-5.3-1.76-8.79-.96a.62.62 0 11-.28-1.21c3.8-.87 7.07-.5 9.71 1.11.3.18.39.57.22.85zm1.23-2.74a.78.78 0 01-1.07.26c-2.69-1.65-6.79-2.13-9.97-1.17a.78.78 0 11-.45-1.49c3.63-1.1 8.15-.56 11.24 1.33.36.22.48.69.25 1.07zm.1-2.85C14.82 8.95 9.6 8.77 6.53 9.7a.93.93 0 11-.54-1.78c3.52-1.07 9.28-.86 12.94 1.31a.93.93 0 11-.95 1.6z"/></svg>Spotify
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 10 -->
+      <article class="pod-card snap-start shrink-0 w-[280px] md:w-[320px] bg-warm border border-ink/8 rounded-[1.25rem] overflow-hidden hover-lift">
+        <a href="https://youtu.be/4mssnTArGWw?si=ENDVTQxfFhXiJ24u" target="_blank" rel="noopener" class="block aspect-video overflow-hidden bg-sand">
+          <img src="https://img.youtube.com/vi/4mssnTArGWw/hqdefault.jpg" alt="" loading="lazy" class="w-full h-full object-cover" />
+        </a>
+        <div class="p-5">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ep. 10</p>
+          <h3 class="serif text-lg leading-snug mb-4 min-h-[3.5rem]">2 gadi klosterī (OSHO ašramā)</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://youtu.be/4mssnTArGWw?si=ENDVTQxfFhXiJ24u" target="_blank" rel="noopener" class="pill-link inline-flex items-center gap-1.5 bg-ink text-warm text-[12px] px-3.5 py-2 rounded-full hover:bg-sageDk">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>YouTube
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="atsauksmes" class="py-20 md:py-28 bg-sand/60">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 md:mb-16 reveal">
+      <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-5">Atsauksmes</p>
+      <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish max-w-2xl">
+        Ko stāsta <span class="ital text-sageDk">mani klienti</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      <figure class="reveal bg-warm rounded-[1.5rem] p-8 md:p-10 border border-ink/8">
+        <svg class="text-rose mb-5" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V9a2 2 0 0 0 0-2zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V9a2 2 0 0 0 0-2z"/></svg>
+        <blockquote class="serif text-xl md:text-2xl leading-snug">
+          „Esmu apmeklējusi Sintijas nodarbības klātienē un arī attālināti. Ļoti novērtēju Sintijas profesionalitāti
+          un nopietnu pieeju treniņnodarbībām. Katra nodarbība ir pārdomāta — Sintija vienmēr informē par intensitātes pakāpi.
+          Esmu priecīga, ka mums ir tik aktīva un pozitīva pasniedzēja! Visiem iesaku."
+        </blockquote>
+        <figcaption class="mt-6 text-sm">
+          <span class="font-medium text-ink">Iveta Muižniece</span>
+          <span class="text-mute"> · Apmeklētāja</span>
+        </figcaption>
+      </figure>
+
+      <figure class="reveal bg-warm rounded-[1.5rem] p-8 md:p-10 border border-ink/8">
+        <svg class="text-rose mb-5" width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V9a2 2 0 0 0 0-2zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v1a3 3 0 0 1-3 3v2a5 5 0 0 0 5-5V9a2 2 0 0 0 0-2z"/></svg>
+        <blockquote class="serif text-xl md:text-2xl leading-snug">
+          „Pateicos trenerei Sintijai Dancei. Tik forši, kā Tu strādā un dod iespēju vingrot arī attālināti.
+          Mans prāts kļūst mierīgāks un ķermenis ir pateicīgs, īpaši mugura."
+        </blockquote>
+        <figcaption class="mt-6 text-sm">
+          <span class="font-medium text-ink">Natalja Teilore</span>
+          <span class="text-mute"> · Online dalībniece</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-10 md:mb-12 reveal">
+      <div>
+        <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-4">Instagram</p>
+        <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+          Ikdiena <span class="ital text-sageDk">Instagram</span>
+        </h2>
+      </div>
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener"
+         class="pill-link inline-flex items-center gap-2 bg-ink text-warm font-medium px-6 py-3 rounded-full hover:bg-sageDk">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        @sintijadance.fitness
+      </a>
+    </div>
+
+    <!--
+      LIVE AUTO-UPDATING FEED:
+      To pull the newest posts automatically, create a free feed at https://behold.so (connect this Instagram),
+      then replace the grid below with the two lines Behold gives you, e.g.:
+        <script src="https://w.behold.so/widget.js" type="module"></script>
+        <behold-widget feed-id="YOUR_FEED_ID"></behold-widget>
+      Until then, the grid below shows recent photos and links to the profile.
+    -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 reveal">
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener" class="group relative block aspect-square overflow-hidden rounded-xl bg-sand">
+        <img src="images/ig1.jpg" loading="lazy" alt="Instagram ieraksts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span class="absolute inset-0 bg-ink/0 group-hover:bg-ink/35 transition-colors flex items-center justify-center">
+          <svg class="w-7 h-7 text-warm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener" class="group relative block aspect-square overflow-hidden rounded-xl bg-sand">
+        <img src="images/ig2.jpg" loading="lazy" alt="Instagram ieraksts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span class="absolute inset-0 bg-ink/0 group-hover:bg-ink/35 transition-colors flex items-center justify-center">
+          <svg class="w-7 h-7 text-warm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener" class="group relative block aspect-square overflow-hidden rounded-xl bg-sand">
+        <img src="images/ig4.jpg" loading="lazy" alt="Instagram ieraksts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span class="absolute inset-0 bg-ink/0 group-hover:bg-ink/35 transition-colors flex items-center justify-center">
+          <svg class="w-7 h-7 text-warm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener" class="group relative block aspect-square overflow-hidden rounded-xl bg-sand">
+        <img src="images/ig5.jpg" loading="lazy" alt="Instagram ieraksts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span class="absolute inset-0 bg-ink/0 group-hover:bg-ink/35 transition-colors flex items-center justify-center">
+          <svg class="w-7 h-7 text-warm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        </span>
+      </a>
+      <a href="https://www.instagram.com/sintijadance.fitness/" target="_blank" rel="noopener" class="group relative block aspect-square overflow-hidden rounded-xl bg-sand">
+        <img src="images/ig6.jpg" loading="lazy" alt="Instagram ieraksts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <span class="absolute inset-0 bg-ink/0 group-hover:bg-ink/35 transition-colors flex items-center justify-center">
+          <svg class="w-7 h-7 text-warm opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.76a5.46 5.46 0 1 0 0 10.92 5.46 5.46 0 0 0 0-10.92zm0 1.62a3.84 3.84 0 1 1 0 7.68 3.84 3.84 0 0 1 0-7.68zm5.65-2.91a1.28 1.28 0 1 0 0 2.56 1.28 1.28 0 0 0 0-2.56z"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT CARDS -->
+<section id="davanu" class="py-20 md:py-28 bg-[#EBC85A] text-ink relative overflow-hidden">
+  <div class="grain"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-12 gap-12 items-center relative">
+    <div class="md:col-span-7 reveal">
+      <p class="uppercase tracking-[0.22em] text-[11px] text-ink/50 mb-5">Dāvanu kartes</p>
+      <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+        Veselīgākā dāvana <span class="ital text-sageDk">draugiem un mīļajiem.</span>
+      </h2>
+      <p class="mt-6 text-ink/70 max-w-xl leading-relaxed">
+        Uzrakstiet mums e-pastā, kādā summā Jūs vēlaties uzdāvināt dāvanu karti online vai klātienes
+        treniņiem, mēs Jums nosūtīsim rēķinu un pēc rēķina apmaksas nosūtīsim arī dāvanu karti uz Jūsu
+        norādīto e-pastu.
+      </p>
+
+      <form class="mt-8 space-y-4 max-w-md" onsubmit="event.preventDefault(); submitGift(this);">
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+        <div>
+          <label class="block text-[11px] uppercase tracking-[0.2em] text-ink/60 mb-1.5" for="g-email">E-pasts</label>
+          <input id="g-email" name="epasts" type="email" required placeholder="tavs@epasts.lv"
+                 class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-rose transition" />
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-[0.2em] text-ink/60 mb-1.5" for="g-message">Komentārs</label>
+          <textarea id="g-message" name="komentars" rows="4" required placeholder="Kādā summā vēlaties uzdāvināt dāvanu karti?"
+                    class="w-full bg-warm border border-ink/15 rounded-xl px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-rose resize-none transition"></textarea>
+        </div>
+        <button type="submit" class="pill-link inline-flex items-center gap-2 bg-ink text-warm font-medium px-7 py-3.5 rounded-full hover:bg-sageDk">
+          Sūtīt
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="md:col-span-5 reveal">
+      <div class="relative rotate-[-2deg]">
+        <div class="bg-cream text-ink rounded-2xl p-8 shadow-2xl">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-mute">Sintija Dance Fitness</p>
+          <p class="serif text-3xl mt-2 leading-tight">Dāvanu karte</p>
+          <div class="my-6 border-t border-ink/10"></div>
+          <p class="text-sm text-mute">Saņēmējam:</p>
+          <p class="serif text-xl">_____________________</p>
+          <p class="text-sm text-mute mt-4">Programma:</p>
+          <p class="serif text-lg">Stiepšanās un relaksācija</p>
+          <p class="text-xs text-mute mt-6">Derīga 6 mēnešus no izsniegšanas datuma</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 md:py-28 bg-cream">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div class="mb-12 reveal text-center">
+      <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-5">Biežāk uzdotie jautājumi</p>
+      <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+        Jautājumi par <span class="ital text-sageDk">treniņiem</span>.
+      </h2>
+    </div>
+
+    <div class="divide-y divide-ink/10 border-y border-ink/10">
+      <details class="group py-5 reveal">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="serif text-lg md:text-xl">Vai treniņiem nepieciešams īpašs inventārs?</span>
+          <span class="plus serif text-2xl transition-transform">+</span>
+        </summary>
+        <p class="mt-3 text-mute leading-relaxed text-[15px]">
+          Treniņiem nav nepieciešams īpašs inventārs. Vēlams ir vingrošanas paklājiņš vai kas cits, ko paklāt uz grīdas.
+          Tiks izmantotas arī hanteles, bet to vietā vari ņemt arī citus smagākus mājsaimniecībā atrodamus priekšmetus.
+          Pirms treniņa sākšanas iepazīsties ar tā aprakstu — iespējams kādā treniņā būs nepieciešams vēl kas,
+          bet tas vienmēr būs aizstājams ar mājās atrodamiem priekšmetiem.
+        </p>
+      </details>
+
+
+      <details class="group py-5 reveal">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="serif text-lg md:text-xl">Vai online treniņu programma obligāti jāsāk ar pirmdienu?</span>
+          <span class="plus serif text-2xl transition-transform">+</span>
+        </summary>
+        <p class="mt-3 text-mute leading-relaxed text-[15px]">
+          Treniņu programmu vari sākt jebkurā nedēļas dienā. Sākot ar to, treniņi parādīsies pa septiņu dienu cikliem.
+          Katrā jaunā nedēļā — jauni treniņi.
+        </p>
+      </details>
+
+      <details class="group py-5 reveal">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="serif text-lg md:text-xl">Kas jāvelk mugurā?</span>
+          <span class="plus serif text-2xl transition-transform">+</span>
+        </summary>
+        <p class="mt-3 text-mute leading-relaxed text-[15px]">
+          Vari darboties sev ērtā sporta tērpā.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / NEWSLETTER -->
+<section id="kontakti" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <p class="uppercase tracking-[0.22em] text-[11px] text-mute mb-5">Kontakti</p>
+      <h2 class="serif text-4xl md:text-5xl leading-[1.05] tracking-tightish">
+        Sazinies vai <span class="ital text-sageDk">uzdod jautājumu.</span>
+      </h2>
+      <p class="mt-6 text-mute max-w-md leading-relaxed">
+        Ātrāk Jums atbildēšu WhatsApp, bet varat rakstīt man arī e-pastā, ja tā Jums ērtāk.
+      </p>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-3 gap-6 reveal">
+      <a href="mailto:sdfinfo8@gmail.com" class="group flex items-center gap-4">
+        <span class="shrink-0 w-11 h-11 rounded-full bg-sand flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg>
+        </span>
+        <span>
+          <span class="block text-[11px] uppercase tracking-[0.2em] text-mute">E-pasts</span>
+          <span class="block serif text-lg group-hover:text-sageDk transition-colors">sdfinfo8@gmail.com</span>
+        </span>
+      </a>
+      <a href="tel:+37120034240" class="group flex items-center gap-4">
+        <span class="shrink-0 w-11 h-11 rounded-full bg-sand flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72a2 2 0 0 1 1.73 2.01z"/></svg>
+        </span>
+        <span>
+          <span class="block text-[11px] uppercase tracking-[0.2em] text-mute">Telefons</span>
+          <span class="block serif text-lg group-hover:text-sageDk transition-colors">+371 200 342 40</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="shrink-0 w-11 h-11 rounded-full bg-sand flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <span>
+          <span class="block text-[11px] uppercase tracking-[0.2em] text-mute">Atrašanās</span>
+          <span class="block serif text-lg">Liepāja</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+{% include "footer.njk" %}
+
+<script>
+  // Mobile menu
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  btn?.addEventListener('click', () => menu.classList.toggle('hidden'));
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Web3Forms — submissions are e-mailed to sdfinfo8@gmail.com.
+  // 1) Go to https://web3forms.com, enter sdfinfo8@gmail.com, confirm the e-mail you receive.
+  // 2) Paste the access key you get below (replace the placeholder).
+  const WEB3FORMS_ACCESS_KEY = '9ea0f0c5-c80b-49d8-8138-4671aae63065';
+
+  // Program info + enquiry
+  const COURSES = {
+    vingrosana: {
+      name: 'Vingrošana stipram un lokanam ķermenim',
+      lead: 'Treniņu programma apvieno vingrošanas un stiepšanās treniņus, lai stiprinātu dziļo muskulatūru, attīstītu visas lielās muskuļu grupas un uzlabotu lokanību.',
+      ilgums: '36 treniņi · 3 mēneši',
+      grafiks: 'Katru nedēļu 3 treniņi — 2× vingrošana spēkam un veselībai, 1× stiepšanās un relaksācija. Treniņu nedēļa sākas brīdī, kad uzsāc.',
+      apmaksa: 'Apmaksa ar rēķinu',
+      cena: '€66',
+      needs: ['Vingrošanas paklājiņš, sega vai dvielis', 'Hanteles (1–2 kg) vai mājsaimniecības priekšmeti', 'Neelastīga josta, striķis, gara šalle vai dvielis'],
+      benefits: ['Stiprināta dziļā muskulatūra', 'Uzlabota lokanība un stāja', 'Labāka mobilitāte locītavās', 'Labāka miega kvalitāte un pašsajūta']
+    },
+    ballet: {
+      name: 'Ballet Fitness',
+      lead: 'Ballet Fitness apvieno klasiskā baleta elementus ar spēka un lokanības vingrinājumiem — strādājot pie stājas, kāju un sēžas spēka un koordinācijas.',
+      ilgums: '8 treniņi · 1 mēnesis',
+      grafiks: 'Katru nedēļu 2 treniņi — viens fokusēts uz tehnikas apgūšanu, otrs uz aktīvo Ballet Fitness. Treniņu nedēļa sākas brīdī, kad uzsāc.',
+      apmaksa: 'Apmaksa ar rēķinu',
+      cena: '€20',
+      needs: ['Vingrošanas paklājiņš, sega vai dvielis', 'Hanteles (1–2 kg) vai mājās atrodami smagumi', 'Neelastīga josta, striķis vai šalle', 'Masāžas rullis vai cits masāžas instruments'],
+      benefits: ['2 treniņu video nedēļā ar treneres demonstrējumu', 'Uzlabota stāja un lokanība', 'Attīstīta koordinācija', 'Nostiprināti muskuļi']
+    },
+    stiepsanas: {
+      name: 'Stiepšanās un relaksācija',
+      lead: 'Programma paredzēta ikvienam, kas vēlas uzlabot lokanību, relaksēties un rast mieru. Nodarbības balstītas uz stiepšanos, spēka elementiem un jogas, pilates un citu sistēmu metodēm.',
+      ilgums: '12 treniņi · 1 mēnesis',
+      grafiks: '3 jauni treniņi katru nedēļu, katrs 50–65 min (1 rītam, 2 vakaram). Treniņu nedēļa sākas pēc tavas izvēles.',
+      apmaksa: 'Vienreizējs maksājums',
+      cena: '€15',
+      needs: ['Vingrošanas paklājiņš', 'Neelastīga josta', 'Spilvens', 'Divi jogas klucīši vai līdzīgi priekšmeti'],
+      benefits: ['Uzlabota lokanība', 'Mazāk sāpju', 'Labāka stāja un mobilitāte', 'Stabilitāte locītavās un labāks miegs']
+    },
+    bali: {
+      name: 'Vingrošana muguras veselībai · Bali',
+      lead: 'Vingrošanas programma muguras veselībai, kas tapusi Bali (Indonēzijā). Programma drīzumā būs pieejama — piesakies, lai uzzini par to pirmais!',
+      ilgums: 'Drīzumā',
+      grafiks: 'Tiks paziņots',
+      apmaksa: '—',
+      cena: '—',
+      needs: ['Vingrošanas paklājiņš'],
+      benefits: ['Vesela un stipra mugura', 'Labāka stāja un mobilitāte']
+    }
+  };
+
+  function detailBlock(label, val) {
+    return '<div><p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-0.5">' + label + '</p><p class="text-ink/80">' + val + '</p></div>';
+  }
+  function renderCourse(c) {
+    const li = arr => arr.map(x => '<li>' + x + '</li>').join('');
+    return '' +
+      '<p class="text-ink/80 leading-relaxed">' + c.lead + '</p>' +
+      '<div class="grid sm:grid-cols-2 gap-x-8 gap-y-4 mt-6">' +
+        detailBlock('Ilgums', c.ilgums) +
+        detailBlock('Grafiks', c.grafiks) +
+        detailBlock('Apmaksa', c.apmaksa) +
+        '<div><p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-0.5">Cena</p><p class="serif text-lg text-ink">' + c.cena + '</p></div>' +
+      '</div>' +
+      '<div class="grid sm:grid-cols-2 gap-x-8 gap-y-6 mt-7">' +
+        '<div><p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Kas nepieciešams</p><ul class="space-y-1.5 text-sm text-ink/80 list-disc pl-4 marker:text-sageDk">' + li(c.needs) + '</ul></div>' +
+        '<div><p class="text-[11px] uppercase tracking-[0.2em] text-mute mb-2">Ieguvumi</p><ul class="space-y-1.5 text-sm text-ink/80 list-disc pl-4 marker:text-sageDk">' + li(c.benefits) + '</ul></div>' +
+      '</div>';
+  }
+
+  // Cache the pristine enquiry form so it can be restored after a submission
+  const enquiryFormHTML = (document.querySelector('#enquiry form') || {}).innerHTML || '';
+
+  function openCourse(card, key) {
+    const c = COURSES[key];
+    if (!c) return;
+    document.querySelectorAll('.prog-card').forEach(x => x.classList.remove('selected'));
+    if (card) card.classList.add('selected');
+    document.getElementById('enquiry-course').textContent = c.name;
+    document.getElementById('course-info').innerHTML = renderCourse(c);
+    const form = document.querySelector('#enquiry form');
+    form.innerHTML = enquiryFormHTML;                 // reset form (e.g. after a previous send)
+    document.getElementById('enquiry-course-input').value = c.name;
+    const box = document.getElementById('enquiry');
+    box.classList.remove('hidden');
+    requestAnimationFrame(() => box.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+  function closeEnquiry() {
+    const box = document.getElementById('enquiry');
+    box.classList.add('hidden');
+    document.querySelectorAll('.prog-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('programmas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  async function submitEnquiry(form) {
+    const course = document.getElementById('enquiry-course').textContent;
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    const prevError = form.querySelector('.form-error');
+    if (prevError) prevError.remove();
+    btn.disabled = true;
+    btn.classList.add('opacity-70');
+    btn.textContent = 'Nosūta…';
+
+    const formData = new FormData(form);
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+    formData.append('from_name', 'Sintija Dance — mājaslapa');
+    formData.append('subject', 'Jauns pieteikums kursam: ' + course);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'Neizdevās nosūtīt');
+
+      form.innerHTML =
+        '<div class="sm:col-span-2 text-center py-6">' +
+        '<p class="serif text-2xl md:text-3xl mb-3 text-ink">Paldies! Tavs pieteikums ir saņemts.</p>' +
+        '<p class="text-mute leading-relaxed max-w-md mx-auto">Pieteikums kursam <span class="text-sageDk">„' + course + '"</span> ir saņemts. ' +
+        'Mēs Jums atsūtīsim rēķinu, kuru lūgums apmaksāt 3 dienu laikā. Pēc tam nosūtīsim piekļuvi kursam uz norādīto e-pasta adresi.</p>' +
+        '</div>';
+    } catch (err) {
+      btn.disabled = false;
+      btn.classList.remove('opacity-70');
+      btn.textContent = original;
+      const e = document.createElement('p');
+      e.className = 'form-error sm:col-span-2 text-sm text-rose leading-relaxed';
+      e.textContent = 'Diemžēl neizdevās nosūtīt pieteikumu. Lūdzu, mēģiniet vēlreiz vai rakstiet mums uz sdfinfo8@gmail.com.';
+      btn.parentNode.insertBefore(e, btn);
+    }
+  }
+  window.openCourse = openCourse;
+  window.closeEnquiry = closeEnquiry;
+  window.submitEnquiry = submitEnquiry;
+
+  // Gift-card request → e-mailed to sdfinfo8@gmail.com via Web3Forms
+  async function submitGift(form) {
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    const prevError = form.querySelector('.form-error');
+    if (prevError) prevError.remove();
+    btn.disabled = true;
+    btn.classList.add('opacity-70');
+    btn.textContent = 'Nosūta…';
+
+    const formData = new FormData(form);
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+    formData.append('from_name', 'Sintija Dance — dāvanu karte');
+    formData.append('subject', 'Dāvanu kartes pieprasījums');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'Neizdevās nosūtīt');
+      form.innerHTML = '<p class="serif text-2xl text-warm leading-snug">Paldies! Tava ziņa ir nosūtīta — drīz sazināsimies un atsūtīsim rēķinu.</p>';
+    } catch (err) {
+      btn.disabled = false;
+      btn.classList.remove('opacity-70');
+      btn.innerHTML = original;
+      const e = document.createElement('p');
+      e.className = 'form-error text-sm text-rose leading-relaxed';
+      e.textContent = 'Diemžēl neizdevās nosūtīt. Lūdzu, rakstiet mums uz sdfinfo8@gmail.com.';
+      btn.parentNode.insertBefore(e, btn);
+    }
+  }
+  window.submitGift = submitGift;
+
+  // Klātienes treniņi info
+  const KLATIENE = {
+    muguras: {
+      name: 'Vingrošana muguras veselībai', price: '€8',
+      lead: 'Samaziniet muguras diskomfortu.',
+      intro: [
+        'Lielākā daļa cilvēku, kuri apmeklē treniņus muguras stiprināšanai, var aizmirst par diskomfortu mugurā un atgriezties pie savām iemīļotajām nodarbēm — dārzniecības, pastaigām vai rotaļām ar bērniem.',
+        'Ja Jums ir ilgstošs darbs pie datora vai vasarā ir jārušinās dārzā, Sintijas Dances treniņi parkā ievērojami uzlabos Jūsu ikdienas darba veiktspēju un prieku.'
+      ],
+      bulletsLead: 'Vingrošanā muguras veselībai Jūs:',
+      bullets: ['Stiprināsiet dziļo muskulatūru', 'Uzlabosiet stāju', 'Trenēsiet muguras augšdaļas muskulatūru', 'Stabilizēsiet jostasvietu / muguras lejasdaļu', 'Ar stiepšanās vingrinājumiem un pašmasāžu atslābināsiet saspringušos muskuļus'],
+      notes: ['Vesela mugura ir atslēga patiesai dzīves baudīšanai!', 'Jūsu mugura Jums būs ļoti pateicīga!']
+    },
+    stiepsanas: {
+      name: 'Stiepšanās un relaksācija', price: '€8',
+      lead: 'Atbrīvojies no stīvuma sajūtas, atslābini saspringušos muskuļus un nomierini skrejošo prātu.',
+      bullets: ['Ķermeņa atbrīvošana un muskuļu atslābināšana', 'Pašmasāžas elementi ar un bez inventāra', 'Pilna ķermeņa un prāta relaksācija/meditācija'],
+      notes: ['Nodarbību mērķis NAV spēt izpildīt špagatu, bet gan veselīgi pastiept muskuļus un atbrīvoties no saspringuma.']
+    },
+    balets: {
+      name: 'Balets pieaugušajiem (iesācējiem)', price: '€8',
+      lead: 'Apgūstam vingrinājumus pie baleta stangas un centrā. Tie ir klasiskā baleta vingrinājumi, kas attīsta:',
+      bullets: ['muskuļu spēku', 'lokanību', 'stabilitāti', 'mobilitāti', 'muzikalitāti', 'plastiskumu'],
+      notes: ['Tā visa rezultātā veidojas staltāka stāja un labāka ķermeņa kontrole.'],
+      warn: 'Neveidojam dejas horeogrāfiju un neuzstājamies koncertos. Šis ir vairāk kā treniņš, nevis deju nodarbība.'
+    },
+    rita: {
+      name: 'Rīta vingrošana', price: '€8',
+      lead: 'Šo nodarbību sākam ar mierīgu ķermeņa pamodināšanu un iekustināšanu. Izpildām kustību kombinācijas, kas iesilda visu ķermeni — sveicienu saulei (surya namaskar) vai sveicienu mēnesim (chandra namaskar). Pārējā nodarbība norit tāpat kā vingrošana muguras veselībai — stiprinām dziļo muskulatūru un ķermeni kopumā, uzlabojam jostas daļas stabilitāti un mācāmies pareizās stājas pamatprincipus.',
+      notes: [
+        'Tiem, kas interesējas par vēdisko astroloģiju: Surya Namaskar ir lieliska upaija (ziedojums) Saulei (Surya). Suryai ziedojumus iesaka veikt, ja ir sarežģījumi ar valsti, tēvu, kauliem un savu ego.',
+        'Chandra Namaskar ir laba upaija prāta nomierināšanai un sievišķās enerģijas stabilizēšanai. To iesaka veikt tiem, kam ir sarežģījumi ar māti, mātes tēmu kā tādu vai šķidrumiem ķermenī (limfa, asinsrite utt.).'
+      ]
+    },
+    seniori: {
+      name: 'Vingrošana senioriem', price: '€6',
+      lead: 'Treniņi piemēroti senioriem, jo kustības ir mierīgākas, pozīcijas saudzējošākas locītavām un pozīciju maiņa mērenāka.',
+      notes: ['Nodarbībā izkustinām visu ķermeni gan stāvus, gan dažādās pozīcijās uz vingrošanas paklājiņa.', 'Izmantojam inventāru — pretestības gumijas, hanteles, jogas blokus, ruļļus, manžetes utt.']
+    },
+    speks: {
+      name: 'Vingrošana spēkam un izturībai', price: '€8',
+      lead: 'Vidējas līdz augstas intensitātes treniņš visam ķermenim.',
+      intro: [
+        'Daudzus vingrinājumus veicam ar sava ķermeņa svaru. Izmantojam svarus — hanteles 0,5–5 kg, pretestības gumijas, jogas blokus u.c.',
+        'Katrā treniņā fokusējamies uz konkrētu ķermeņa daļu. Piemēram:'
+      ],
+      bullets: ['Pirmdien — rokas / krūtis / muguras augšdaļa', 'Trešdien — kājas, sēža', 'Pirmdien — vēdera prese, mugura, dziļā muskulatūra', 'Trešdien — atkal rokas / krūtis… utt.'],
+      notes: [
+        'Šie treniņi ir krietni intensīvāki par „Vingrošanu muguras veselībai", un tik daudz nekavējamies pie tehniskām detaļām. Temps ir dinamisks un pauzes nav garas. Šajā treniņā iekļauti arī lēcieni un skrējieni, kas nav „Vingrošanā muguras veselībai".',
+        'Šis ir lielisks treniņš tiem, kam „Vingrošana muguras veselībai" jau šķiet par vieglu.'
+      ]
+    }
+  };
+  function renderKlatiene(c) {
+    let h = '';
+    if (c.lead) h += '<p class="serif text-lg text-ink leading-relaxed">' + c.lead + '</p>';
+    if (c.intro) h += c.intro.map(p => '<p class="mt-4 text-ink/80 leading-relaxed">' + p + '</p>').join('');
+    if (c.bulletsLead) h += '<p class="mt-5 text-ink/80 leading-relaxed">' + c.bulletsLead + '</p>';
+    if (c.bullets) h += '<ul class="mt-3 space-y-1.5 text-ink/80 list-disc pl-5 marker:text-sageDk">' + c.bullets.map(b => '<li>' + b + '</li>').join('') + '</ul>';
+    if (c.notes) h += c.notes.map(n => '<p class="mt-4 text-ink/80 leading-relaxed">' + n + '</p>').join('');
+    if (c.warn) h += '<p class="mt-5 text-ink/90 leading-relaxed bg-sand border border-ink/10 rounded-xl p-4"><span class="text-rose font-medium">!</span> ' + c.warn + '</p>';
+    return h;
+  }
+  function openKlatiene(el, key) {
+    const c = KLATIENE[key];
+    if (!c) return;
+    document.querySelectorAll('.kl-card').forEach(x => x.classList.remove('kl-selected'));
+    if (el) el.classList.add('kl-selected');
+    document.getElementById('klatiene-title').textContent = c.name;
+    document.getElementById('klatiene-price').textContent = c.price || '';
+    document.getElementById('klatiene-desc').innerHTML = renderKlatiene(c);
+    const box = document.getElementById('klatiene-info');
+    box.classList.remove('hidden');
+    requestAnimationFrame(() => box.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+  function closeKlatiene() {
+    document.getElementById('klatiene-info').classList.add('hidden');
+    document.querySelectorAll('.kl-card').forEach(x => x.classList.remove('kl-selected'));
+  }
+  window.openKlatiene = openKlatiene;
+  window.closeKlatiene = closeKlatiene;
+
+  // 1:1 individual training box
+  function toggleSolo(el) {
+    const box = document.getElementById('klatiene-solo');
+    const opening = box.classList.contains('hidden');
+    document.querySelectorAll('.kl-card').forEach(x => x.classList.remove('kl-selected'));
+    if (opening) {
+      el.classList.add('kl-selected');
+      box.classList.remove('hidden');
+      requestAnimationFrame(() => box.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    } else {
+      box.classList.add('hidden');
+    }
+  }
+  function closeSolo() {
+    document.getElementById('klatiene-solo').classList.add('hidden');
+    document.querySelectorAll('.kl-card').forEach(x => x.classList.remove('kl-selected'));
+  }
+  window.toggleSolo = toggleSolo;
+  window.closeSolo = closeSolo;
+  document.querySelectorAll('.kl-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+
+  // Podcast carousel
+  function scrollPodcast(dir) {
+    const track = document.getElementById('podcast-track');
+    if (!track) return;
+    const card = track.querySelector('.pod-card');
+    const amount = card ? card.offsetWidth + 24 : 320; // 24px = gap-6
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+  window.scrollPodcast = scrollPodcast;
+
+  // Keyboard activation for program cards
+  document.querySelectorAll('.prog-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Publish sintijadance.lv to Cloudflare Pages via Direct Upload on every push to main.
+# The Pages project is NOT git-connected, so this consumes ZERO Pages build quota — the
+# "build" runs on GitHub Actions minutes.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: pages-deploy        # collapse rapid commits into one in-flight deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Build the Eleventy site: src/ -> _site/  (output is what Pages serves).
+      - run: npm ci && npx @11ty/eleventy
+      - name: Publish to Cloudflare Pages (Direct Upload)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}   # repo secret: Pages:Edit token
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} # repo secret
+          # PLACEHOLDER project name: "sintija-dance" must match the real Cloudflare Pages
+          # project name once it is created. Update both here and in package.json scripts if renamed.
+          # --branch = the git branch: "main" publishes PRODUCTION; any other branch becomes a preview.
+          command: pages deploy _site/ --project-name=sintija-dance --branch=${{ github.ref_name }}

@@ -1,0 +1,27 @@
+{
+  "name": "Sintija Dance",
+  "fullName": "Sintija Dance Fitness",
+  "domain": "sintijadance.lv",
+  "url": "https://sintijadance.lv",
+  "tagline": "Online treniņu programmas stipram, lokanam ķermenim un mierpilnam prātam — sev ērtā laikā un vietā.",
+  "email": "sdfinfo8@gmail.com",
+  "phone": "+371 200 342 40",
+  "phoneHref": "+37120034240",
+  "location": "Liepāja",
+  "year": "2026",
+  "social": {
+    "instagram": "https://www.instagram.com/sintijadance.fitness/",
+    "instagramHandle": "@sintijadance.fitness"
+  },
+  "brand": {
+    "cream": "#F6F1E8",
+    "sand": "#EDE3D2",
+    "warm": "#FBF7F0",
+    "ink": "#1E1B17",
+    "mute": "#6F6757",
+    "sage": "#7C8A6B",
+    "sageDk": "#5E6C50",
+    "rose": "#C8907E",
+    "gift": "#EBC85A"
+  }
+}
