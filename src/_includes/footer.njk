@@ -29,7 +29,11 @@
 
     <div class="border-t border-ink/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-mute">
       <p>© {{ site.year }} {{ site.fullName }}. Visas tiesības aizsargātas.</p>
-      <p>Veidots ar mīlestību kustībai.</p>
+      <div class="flex items-center gap-4">
+        {% if site.social.instagram %}<a href="{{ site.social.instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="text-mute hover:text-ink transition-colors"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>{% endif %}
+        {% if site.social.facebook %}<a href="{{ site.social.facebook }}" target="_blank" rel="noopener" aria-label="Facebook" class="text-mute hover:text-ink transition-colors"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>{% endif %}
+        {% if site.social.youtube %}<a href="{{ site.social.youtube }}" target="_blank" rel="noopener" aria-label="YouTube" class="text-mute hover:text-ink transition-colors"><svg width="20" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m22 8-6 4 6 4V8z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg></a>{% endif %}
+      </div>
     </div>
   </div>
 </footer>
