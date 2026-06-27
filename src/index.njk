@@ -12,11 +12,19 @@
 <!-- Lead conversion: fire generate_lead on any form submit or WhatsApp/enquiry-link click -->
 <script>
   (function(){
-    function lead(m){ if(window.gtag) gtag('event','generate_lead',{method:m}); }
-    document.addEventListener('submit', function(){ lead('form'); }, true);
+    var started={};
+    function ev(n,p){ if(window.gtag) gtag('event',n,p||{}); }
+    document.addEventListener('focusin', function(e){
+      var f=e.target.form; if(!f) return; var k=f.id||f.name||'form';
+      if(!started[k]){ started[k]=1; ev('form_start',{method:'form'}); }
+    }, true);
+    document.addEventListener('submit', function(e){
+      if(!e.target.checkValidity || e.target.checkValidity()) ev('generate_lead',{method:'form'});
+    }, true);
     document.addEventListener('click', function(e){
-      var a=e.target.closest&&e.target.closest('a'); if(!a) return;
-      if(/wa\.me|api\.whatsapp|buy\.stripe\.com/.test(a.getAttribute('href')||'')) lead('link');
+      var a=e.target.closest&&e.target.closest('a'); if(!a) return; var h=a.getAttribute('href')||'';
+      if(/buy\.stripe\.com|skool\.com/.test(h)) ev('begin_checkout',{method:'link'});
+      else if(/wa\.me|api\.whatsapp/.test(h)) ev('generate_lead',{method:'whatsapp'});
     }, true);
   })();
 </script>
