@@ -9,6 +9,17 @@
   gtag('js', new Date());
   gtag('config', 'G-1SK49T1TDN');
 </script>
+<!-- Lead conversion: fire generate_lead on any form submit or WhatsApp/enquiry-link click -->
+<script>
+  (function(){
+    function lead(m){ if(window.gtag) gtag('event','generate_lead',{method:m}); }
+    document.addEventListener('submit', function(){ lead('form'); }, true);
+    document.addEventListener('click', function(e){
+      var a=e.target.closest&&e.target.closest('a'); if(!a) return;
+      if(/wa\.me|api\.whatsapp|buy\.stripe\.com/.test(a.getAttribute('href')||'')) lead('link');
+    }, true);
+  })();
+</script>
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
