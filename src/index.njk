@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="lv">
 <head>
+<!-- Internal opt-out: visit any page once with ?noga=1 to stop GA4 + Meta tracking THIS browser
+     (persists via localStorage sd_noga); ?noga=0 re-enables. Use on your own dev machine. -->
+<script>try{var _s=location.search;if(/[?&]noga=1/.test(_s))localStorage.setItem('sd_noga','1');if(/[?&]noga=0/.test(_s))localStorage.removeItem('sd_noga');if(localStorage.getItem('sd_noga')==='1'){window['ga-disable-G-1SK49T1TDN']=true;window.sdNoGA=true;}}catch(e){}</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1SK49T1TDN"></script>
 <script>
@@ -30,6 +33,7 @@
 </script>
 <!-- Meta Pixel -->
 <script>
+  if(!window.sdNoGA){
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -37,6 +41,7 @@
   document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1824936878820390');
   fbq('track', 'PageView');
+  }
 </script>
 <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1824936878820390&ev=PageView&noscript=1" alt="" /></noscript>
