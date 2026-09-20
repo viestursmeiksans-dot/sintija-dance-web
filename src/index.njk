@@ -257,7 +257,7 @@
            role="button" tabindex="0" onclick="openKlatiene(this,'seniori')">
         <span class="serif text-2xl text-rose shrink-0">05</span>
         <h3 class="serif text-lg md:text-xl leading-tight">Vingrošana senioriem</h3>
-        <span class="ml-auto serif text-lg text-ink shrink-0">€7</span>
+        <span class="ml-auto serif text-lg text-ink shrink-0">€8</span>
         <svg class="shrink-0 text-mute" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
       </div>
       <div class="kl-card reveal flex items-center gap-4 bg-warm border border-ink/8 rounded-2xl px-6 py-6 hover-lift cursor-pointer"
@@ -1234,10 +1234,19 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Web3Forms — submissions are e-mailed to sdfinfo8@gmail.com.
-  // 1) Go to https://web3forms.com, enter sdfinfo8@gmail.com, confirm the e-mail you receive.
-  // 2) Paste the access key you get below (replace the placeholder).
-  const WEB3FORMS_ACCESS_KEY = '9ea0f0c5-c80b-49d8-8138-4671aae63065';
+  // Pieteikumus apstrādā mūsu pašu Worker (sintija-forms) un izsūta caur Resend.
+  // Web3Forms bija tikai VIENS adresāts — tā pastkastīte, kurai pieder atslēga —
+  // un otra pielikšana tur ir maksas funkcija. Šeit adresātu saraksts ir Worker'a
+  // mainīgais, tāpēc adresāta maiņai lapa nav jāpārizvieto.
+  // Katrs pieteikums pirms sūtīšanas tiek saglabāts, tātad e-pasta kļūme to nepazaudē.
+  const FORM_ENDPOINT = 'https://sintija-forms.viesturs-meiksans.workers.dev/submit';
+
+  // FormData -> parasts objekts, ko Worker gaida JSON veidā.
+  function formPayload(form, extra) {
+    const o = {};
+    new FormData(form).forEach(function (v, k) { o[k] = v; });
+    return Object.assign(o, extra);
+  }
 
   // Program info + enquiry
   const COURSES = {
@@ -1335,16 +1344,13 @@
     btn.classList.add('opacity-70');
     btn.textContent = 'Nosūta…';
 
-    const formData = new FormData(form);
-    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.append('from_name', 'Sintija Dance — mājaslapa');
-    formData.append('subject', 'Jauns pieteikums kursam: ' + course);
+    const payload = formPayload(form, { subject: 'Jauns pieteikums kursam: ' + course });
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.message || 'Neizdevās nosūtīt');
@@ -1369,7 +1375,7 @@
   window.closeEnquiry = closeEnquiry;
   window.submitEnquiry = submitEnquiry;
 
-  // Gift-card request → e-mailed to sdfinfo8@gmail.com via Web3Forms
+  // Dāvanu kartes pieprasījums — tas pats ceļš kā kursu pieteikumam.
   async function submitGift(form) {
     const btn = form.querySelector('button[type="submit"]');
     const original = btn.innerHTML;
@@ -1379,16 +1385,13 @@
     btn.classList.add('opacity-70');
     btn.textContent = 'Nosūta…';
 
-    const formData = new FormData(form);
-    formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.append('from_name', 'Sintija Dance — dāvanu karte');
-    formData.append('subject', 'Dāvanu kartes pieprasījums');
+    const payload = formPayload(form, { subject: 'Dāvanu kartes pieprasījums' });
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.message || 'Neizdevās nosūtīt');
@@ -1440,7 +1443,7 @@
       ]
     },
     seniori: {
-      name: 'Vingrošana senioriem', price: '€7',
+      name: 'Vingrošana senioriem', price: '€8',
       lead: 'Treniņi piemēroti senioriem, jo kustības ir mierīgākas, pozīcijas saudzējošākas locītavām un pozīciju maiņa mērenāka.',
       notes: ['Nodarbībā izkustinām visu ķermeni gan stāvus, gan dažādās pozīcijās uz vingrošanas paklājiņa.', 'Izmantojam inventāru — pretestības gumijas, hanteles, jogas blokus, ruļļus, manžetes utt.']
     },
